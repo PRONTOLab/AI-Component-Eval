@@ -9,7 +9,8 @@ for fn in `cat fns.txt`; do
         # echo "$repo"
         # pwd
         if git grep -q "$fn" ; then
-            echo "- $repo" # >> $FILE
+            lastcommit=`git log -1 --format="%at" | xargs -I{} date -d @{} +%Y/%m`
+            echo "- $repo ($lastcommit)" # >> $FILE
             #echo "Found"
         # else
             
